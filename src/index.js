@@ -84,30 +84,32 @@ class Game extends React.Component {
     return <Word key={i} value={answer} status={status} />;
   }
 
-  checkAnswer(i){
+  checkAnswer(i) {
     let finish = this.state.finish;
     const answers = this.state.answers;
-    if(finish === answers.length){
+    if (finish === answers.length) {
       return;
     }
 
-    const letters = this.state.letters;
-    letters[i].show = false;
+    const letter = this.state.letters[i];
+    letter.show = false;
+    let letterChar = letter.letter;
 
-    let score  = this.state.score;
-    for (let j = 0; j < answers.length; j++) {
-      if(answers[j].letter === letters[i].letter){
-        answers[j].status = "answer-show";
-        finish++;
-        score = score + 30;
-      } else {
-        score = score - 10;
+    let answered = false;
+    let score = this.state.score;
+    this.state.answers.map(answer => {
+      if (letterChar !== answer.letter) {
+        return;
       }
-    }
+
+      answered = true;
+      answer.status = "answer-show";
+      finish++;
+    });
+
+    score += answered ? 30 : -10;
 
     this.setState({
-      letters: letters,
-      answers: answers,
       finish : finish,
       score  : score
     });
