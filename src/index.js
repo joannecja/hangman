@@ -74,7 +74,10 @@ class Game extends React.Component {
   }
 
   renderCircle(letter, i) {
-    return <Circle key={letter} value={letter} onClick={ () => { this.checkAnswer(i) } } />;
+    if (!letter.show) {
+      return;
+    }
+    return <Circle key={letter.letter} value={letter.letter} onClick={ () => { this.checkAnswer(i) } } />;
   }
 
   renderWord(answer, status, i) {
@@ -117,7 +120,7 @@ class Game extends React.Component {
         <div className="letter-board">
           {
             this.state.letters.map(
-              (letter, i) => letter.show && this.renderCircle(letter.letter, i)
+              (letter, i) => this.renderCircle(letter, i)
             )
           }
         </div>
