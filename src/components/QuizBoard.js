@@ -1,6 +1,6 @@
 import React from 'react';
-import Word from './Word';
 import * as R from 'ramda';
+import Word from './Word';
 
 class QuizBoard extends React.Component {
 
