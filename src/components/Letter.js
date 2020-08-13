@@ -1,10 +1,10 @@
 import React from 'react';
 
-class Button extends React.Component {
+class Letter extends React.Component {
   render() {
     return (
       <button
-        className="circle"
+        className={`letter ${(this.props.disabled) ? 'disabled': ''}`}
         onClick={this.props.onClick}
       >
         {this.props.value}
@@ -13,4 +13,4 @@ class Button extends React.Component {
   }
 }
 
-export default Button;
+export default Letter;
