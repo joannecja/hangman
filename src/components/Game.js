@@ -8,6 +8,7 @@ class Game extends React.Component {
     super(props);
     this.state = {
       score: 0,
+      word: 'APPLE',
       alphabet: {
         "A":false,
         "B":false,
@@ -48,6 +49,7 @@ class Game extends React.Component {
     return (
       <div className="game">
         <Score score={this.state.score} />
+        <QuizBoard word={this.state.word} alphabet={this.state.alphabet}/>
         <AlphabetBoard alphabet={this.state.alphabet} onClick={this.handleClick} />
       </div>
     );

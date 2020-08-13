@@ -4,7 +4,7 @@ class Word extends React.Component {
   render() {
     return (
       <button
-        className={this.props.status}
+        className={`answer ${(this.props.show) ? 'show': 'hide'}`}
         value={this.props.value}
       >
         {this.props.value}

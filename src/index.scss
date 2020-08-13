@@ -38,9 +38,9 @@ body {
 
 .quiz-board {
   padding: 30px;
-  text-align-last: center;
+  text-align:center;
 
-  .answer{
+  .answer {
     height: 60px;
     width: 60px;
     font-size: 30px;
@@ -49,12 +49,13 @@ body {
     font-weight: bold;
     margin: 5px;
     text-align: center;
+    pointer-events: none;
 
-    .hide {
+    &.hide {
       color: #F7F7F2;
     }
 
-    .show {
+    &.show {
       color: #899878;
     }
   }
