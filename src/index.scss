@@ -1,5 +1,5 @@
 body {
-  font: 20px "Century Gothic", Futura, sans-serif;
+  font: 20px "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
   margin: 20px;
 }
 
@@ -8,6 +8,7 @@ body {
 }
 
 .alphabet-board {
+  font: 20px "Century Gothic", Futura, sans-serif;
   padding: 30px;
   border: 1px dashed #999;
   border-radius: 5px;
@@ -37,6 +38,7 @@ body {
 }
 
 .quiz-board {
+  font: 20px "Century Gothic", Futura, sans-serif;
   padding: 30px;
   text-align:center;
 
@@ -66,7 +68,46 @@ body {
   height: 25px;
   width: 100px;
   font-size: 15px;
-  background-color: #D8BFAA;
-  border: none;
-  border-radius: 2%;
+  background-color: #ef959d;
+  border-color: #ef959d;
+  border-radius: 5%;
+}
+
+.word-list {
+  font: 16px "AppleMyungjo";
+  text-transform: lowercase;
+  width: 300px;
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px dashed #999;
+  border-radius: 5px;
+
+  .title {
+    font: 20px "AmericanTypewriter-Bold";
+    text-transform: capitalize;
+    width: 150px;
+    background-color: #fff;
+    margin-top: -35px;
+    margin-bottom: 20px;
+    border-radius: 2%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .word-list-btn {
+    float: right;
+    width: 20px;
+    height: 20px;
+    margin-top: -42px;
+    margin-right: 75px;
+    background-color: #f5f1ed;
+    border: none;
+    border-radius: 20%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

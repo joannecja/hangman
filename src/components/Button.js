@@ -1,16 +1,16 @@
 import React from 'react';
 
-class NextButton extends React.Component {
+class Button extends React.Component {
   render() {
     return (
       <button
-        className="next-btn"
+        className={this.props.className}
         onClick={this.props.onClick}
       >
-        Next
+        {this.props.value}
       </button>
     );
   }
 }
 
-export default NextButton;
+export default Button;

@@ -1,8 +1,9 @@
 import React from "react";
 import * as R from 'ramda';
-import NextButton from './NextButton';
+import Button from './Button';
 import AlphabetBoard from './AlphabetBoard';
 import QuizBoard from './QuizBoard';
+import WordList from './WordList';
 
 class Game extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Game extends React.Component {
       words: ['APPLE', 'BANANA', 'ORANGE', 'GRAPE', 'COCONUT', 'MANGO', 'AVOCADO'],
       word: '',
       alphabet: {},
+      showWordList: false
     };
   }
 
@@ -83,12 +85,24 @@ class Game extends React.Component {
     this.setState({ alphabet });
   }
 
+  handleWordList = () => {
+    const showWordList = !this.state.showWordList
+    this.setState({ showWordList });
+  }
+
   render() {
     return (
       <div className="game">
         <QuizBoard word={this.state.word} alphabet={this.state.alphabet}/>
-        {this.state.finished && <NextButton onClick={this.randomNewWord}/>}
+        { this.state.finished &&
+          <Button value="Next" className="next-btn" onClick={this.randomNewWord}/>
+        }
         <AlphabetBoard alphabet={this.state.alphabet} onClick={this.handleClick} />
+        <WordList
+          showWordList={this.state.showWordList}
+          onClick={this.handleWordList}
+          words={this.state.words}
+        />
       </div>
     );
   }
