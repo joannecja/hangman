@@ -1,6 +1,5 @@
 import React from "react";
 import * as R from 'ramda';
-import Score from './Score';
 import NextButton from './NextButton';
 import AlphabetBoard from './AlphabetBoard';
 import QuizBoard from './QuizBoard';
@@ -9,7 +8,6 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      score: 0,
       finished: false,
       words: ['APPLE', 'BANANA', 'ORANGE', 'GRAPE', 'COCONUT', 'MANGO', 'AVOCADO'],
       word: '',
@@ -88,7 +86,6 @@ class Game extends React.Component {
   render() {
     return (
       <div className="game">
-        <Score score={this.state.score} />
         <QuizBoard word={this.state.word} alphabet={this.state.alphabet}/>
         {this.state.finished && <NextButton onClick={this.randomNewWord}/>}
         <AlphabetBoard alphabet={this.state.alphabet} onClick={this.handleClick} />
