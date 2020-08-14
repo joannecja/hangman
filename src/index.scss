@@ -1,10 +1,27 @@
 body {
   font: 20px "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
   margin: 20px;
+  text-align: -webkit-center;
 }
 
-.game {
-  text-align: -webkit-center;
+.word-input {
+  textarea {
+    font-size: 20px;
+    width: 200px;
+    height: 300px;
+    resize:none;
+  }
+
+  .start-btn {
+    font: 20px "Noteworthy-Bold";
+    margin-bottom: 20px;
+    height: 40px;
+    width: 150px;
+    color: #613f42;
+    background-color: #ef959d;
+    border-color: #ef959d;
+    border-radius: 5%;
+  }
 }
 
 .alphabet-board {

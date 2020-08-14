@@ -4,25 +4,32 @@ import Button from './Button';
 import AlphabetBoard from './AlphabetBoard';
 import QuizBoard from './QuizBoard';
 import WordList from './WordList';
+import WordsInput from './WordsInput';
+
+
+const isNotEmpty = (val) => {
+  return !R.isEmpty(val);
+};
+
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       finished: false,
-      words: ['APPLE', 'BANANA', 'ORANGE', 'GRAPE', 'COCONUT', 'MANGO', 'AVOCADO'],
+      words: [],
       word: '',
       alphabet: {},
       showWordList: false
     };
   }
 
-  randomNewWord = () => {
-    const getRandomInt = (max) => {
-      return Math.floor(Math.random() * Math.floor(max));
-    }
-    const random = getRandomInt(this.state.words.length);
-    const word = this.state.words[random];
+  randomNewWord = (words) => {
+    const random = getRandomInt(words.length);
+    const word = words[random];
     const alphabet = {
       "A":false,
       "B":false,
@@ -53,10 +60,6 @@ class Game extends React.Component {
     };
     const finished = false;
     this.setState({alphabet, word, finished});
-  }
-
-  componentDidMount() {
-    this.randomNewWord();
   }
 
   componentDidUpdate() {
@@ -90,21 +93,36 @@ class Game extends React.Component {
     this.setState({ showWordList });
   }
 
+  updateWords = (input) => {
+    input = R.split('\n', R.trim(input)); //split by new line
+    input = R.filter(isNotEmpty, input); //remove empty line
+    const words = R.map(R.toUpper(), input); //use upperclass
+
+    this.setState({ words });
+    this.randomNewWord(words);
+  }
+
   render() {
-    return (
-      <div className="game">
-        <QuizBoard word={this.state.word} alphabet={this.state.alphabet}/>
-        { this.state.finished &&
-          <Button value="Next" className="next-btn" onClick={this.randomNewWord}/>
-        }
-        <AlphabetBoard alphabet={this.state.alphabet} onClick={this.handleClick} />
-        <WordList
-          showWordList={this.state.showWordList}
-          onClick={this.handleWordList}
-          words={this.state.words}
-        />
-      </div>
-    );
+    if(R.isEmpty(this.state.words)) {
+      return (
+        <WordsInput updateWords={this.updateWords}/>
+      );
+    } else {
+      return (
+        <div className="game">
+          <QuizBoard word={this.state.word} alphabet={this.state.alphabet}/>
+          { this.state.finished &&
+            <Button value="Next" className="next-btn" onClick={() => this.randomNewWord(this.state.words)}/>
+          }
+          <AlphabetBoard alphabet={this.state.alphabet} onClick={this.handleClick} />
+          <WordList
+            showWordList={this.state.showWordList}
+            onClick={this.handleWordList}
+            words={this.state.words}
+          />
+        </div>
+      );
+    }
   }
 }
 
