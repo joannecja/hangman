@@ -96,8 +96,10 @@ class Game extends React.Component {
   updateWords = (input) => {
     input = R.split('\n', R.trim(input)); //split by new line
     input = R.filter(isNotEmpty, input); //remove empty line
-    const words = R.map(R.toUpper(), input); //use upperclass
-
+    const words = [];
+    input.forEach( word => {
+      words.push(R.trim(R.toUpper(word)));
+    })
     this.setState({ words });
     this.randomNewWord(words);
   }
